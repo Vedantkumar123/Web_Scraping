@@ -17,16 +17,9 @@ import tqdm
 df = pd.read_excel('04_Processed_Files/branch_locations_links_v2.xlsx')
 
 
-# user = 'xiao'
-# urls = df['url'][115:191]
 
-# user = 'winnetou'
-# urls = df['url'][190:382]
 
-# user = 'ivan'
-# urls = df['url'][381:573]
-
-user = 'vindhya'
+user = ''
 urls = df['url'][572:622]
 
 data = defaultdict(list)

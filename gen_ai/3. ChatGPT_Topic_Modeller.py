@@ -15,7 +15,7 @@ import sys
 import ScoreFunctions as sf
 
 user = 'wr676jp'
-sys.path.append(fr'C:\Users\{user}\OneDrive - EY\Documents\SAGT')
+sys.path.append(fr'C:\Users\{user}\OneDrive\Documents\SAGT')
 
 model_name = "cardiffnlp/twitter-roberta-base-sentiment-latest"
 tokenizer = AutoTokenizer.from_pretrained(model_name)
@@ -54,7 +54,7 @@ SERPER_API_KEY = "d4d674c45a86588928f879e9f2eecaff2e06c250"
 gpt_model = "gpt-4"
 temperature = 0
 
-# Initialize LLM 
+
 llm = AzureChatOpenAI(deployment_name=gpt_model,temperature=temperature,openai_api_key = OPENAI_API_KEY,openai_api_base = OPENAI_API_BASE,openai_api_version = OPENAI_API_VERSION,openai_api_type = OPENAI_API_TYPE)
 
 answers = []

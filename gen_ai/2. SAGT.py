@@ -11,7 +11,7 @@ from tqdm import tqdm
 pd.options.mode.chained_assignment = None
 logging.set_verbosity_error()
 
-#sys.path.append(r'C:\Users\WN369BP\OneDrive - EY\Documents\SAGT') #Change to your local git folder
+
 
 def sentimentScore(text):
     '''
@@ -35,7 +35,7 @@ def sentimentScore(text):
     return score
 
 
-def getTopics(text,topics_emb,thresholds): #Do the embedding of the topics only once and outisde the function
+def getTopics(text,topics_emb,thresholds): 
     '''
     text: text to assign a topic to
     topics_emb: a series of keywords embedding for topics
@@ -58,7 +58,7 @@ def getTopics(text,topics_emb,thresholds): #Do the embedding of the topics only 
         return [None, 'other']
     
 
-#### Model Definition ####
+
 model_name = "cardiffnlp/twitter-roberta-base-sentiment-latest"
 # model_name_embedding = "sentence-transformers/all-MiniLM-L6-v2"
 tokenizer = AutoTokenizer.from_pretrained(model_name)
@@ -74,18 +74,18 @@ def runSAGT(user, part_size = 1000, part_start = 1, part_end = 2):
     part_start: number of the first part, included
     part_end: number of the last part, excluded
     '''
-    #### Read Base Data ####
+
     data_path = fr"C:\Users\{user}\EY\DATS Germany - TS-SA - TS-SA\03. Data"
     reviews_file = data_path + r"\04. Final Output\all_products_2023-08-15.xlsx"
     topics_file = data_path + r"\05. Topic Definition\POF Topics.xlsx"
     base_df = pd.read_excel(reviews_file, sheet_name='Reviews', usecols = ['UID','Review_Cleaned']) #Product ID & Review Text
 
     for i in tqdm(range(part_start,part_end)):
-        #### Input and Output files ####
+
         part = i
         output_file = data_path + r"\04. Final Output\Results " + datetime.today().strftime('%Y-%m-%d') + " Part " + str(part) + ".xlsx"
 
-        #### Framework ####
+
         df_part = base_df.loc[((part-1)*part_size):(part*part_size)-1]
         # df_topics = pd.read_excel(topics_file, sheet_name='Topics', index_col='Topics')
         # topics_emb = df_topics['Keywords'].map(model_embedding.encode)
@@ -95,7 +95,7 @@ def runSAGT(user, part_size = 1000, part_start = 1, part_end = 2):
                                 np.where(df_part['Score'] > 0.33,"Positive","Neutral"))
         # df_part[['Similarity','Topic']] = [getTopics(text,topics_emb,df_topics['Thresholds']) for text in tqdm(df_part['Review_Cleaned'], total=len(df_part['Review_Cleaned']))] 
 
-        #### Output ####
+
         df_part.to_excel(output_file, sheet_name="Results")
 
 

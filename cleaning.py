@@ -1,6 +1,6 @@
 # import pandas as pd
 # user='vindhya'
-# path=r"Output_Files\reviews_vindhya_752_to766.xlsx"
+# path=r"Output_Files\reviews_752_to766.xlsx"
 # df_reviews=pd.read_excel(path)
 # df_reviews_final = df_reviews.drop_duplicates()
 # df_reviews_final['Date'] = df_reviews_final['Date'].str.replace('\хаθ', '')
@@ -13,10 +13,9 @@ import numpy as np
 x = np.array([[1, 2], [3, 4], [5, 6],[8,9]])
 y = np.array([7, 8, 9,10])
 
-# Reshape y to be a column vector
+
 y_reshaped = np.reshape(y, (-1, 1))
 
-# Horizontally stack x and y_reshaped
 # data = np.hstack((x, y_reshaped))
 print(y_reshaped)
 # print(data)

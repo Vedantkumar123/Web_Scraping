@@ -88,7 +88,7 @@ def sentimentScore(text):
     return score
 
 
-#### Model Definition ####
+
 model_name = "cardiffnlp/twitter-roberta-base-sentiment-latest"
 model_name_embedding = "sentence-transformers/all-MiniLM-L6-v2"
 tokenizer = AutoTokenizer.from_pretrained(model_name)
@@ -98,25 +98,23 @@ config = AutoConfig.from_pretrained(model_name)
 model_embedding = SentenceTransformer(model_name_embedding)
 
 
-## ChatGPT Set up
-# OpenAI Parameter - GPT-4 and GPT-4-32k turbo for testing
 OPENAI_API_TYPE='azure'
 OPENAI_API_BASE='https://frcdaoipocaoa02.openai.azure.com/' 
 OPENAI_API_VERSION='2023-03-15-preview'
 OPENAI_API_KEY='9c2f1a52118e4d1c99d3abd590fe34e4'
 
-# Google Serp API
+
 SERPER_API_KEY = "d4d674c45a86588928f879e9f2eecaff2e06c250"
 
 
 gpt_model="gpt-4"
 temperature=0
 
-# Initialize LLM 
+
 llm = AzureChatOpenAI(deployment_name=gpt_model,temperature=temperature,openai_api_key = OPENAI_API_KEY,openai_api_base = OPENAI_API_BASE,openai_api_version = OPENAI_API_VERSION,openai_api_type = OPENAI_API_TYPE)
 
 
-#### Up to here, it was all data model preparation 
+
 
 
 folder_path = r'C:\Users\WN369BP\EY\TD - Advanced Analytics - General\03_Output_Files' # Replace with folder
@@ -180,7 +178,7 @@ df_test_3 = pd.concat([df_test_2[df_test_2['single_topic'] == 0],df_test_2[df_te
 
 
 
-## Need to replace here with the new topics (they must match the ones from the prompt (line 132)) ##
+
 
 df_test_3['Topic'] = df_test_3['Topic_Split_3'].str.lower().str.extract('(products|customer service|store atmosphere|store location|price)')[0].str.title().fillna("Not Available")
 output = df.drop(columns=['Topic_Split','Topic_Split_2']).copy().merge(df_test_3.drop(columns=['Topic_Split_2','single_topic']),

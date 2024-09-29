@@ -9,33 +9,32 @@ import string
 from json import JSONDecodeError
 from httpx import TimeoutException
 
-#################################################################
 # Translator: deepl
 
 # import deepl
 # auth_key = "f63c02c5-f056-..."
 # translator = deepl.Translator(auth_key, verify=False)
-#################################################################
 
 
-#################################################################
+
+
 # Translator: googletrans 4.0.0
 
 # pip install googletrans-py
 #     # need to change line 37 of Translator (client.py): add param verify=False in httpx.Client
 from googletrans import Translator
 translator = Translator()
-#################################################################
 
 
-#################################################################
+
+
 # Translator: deep_translator - GoogleTranslator
 
 # from deep_translator import GoogleTranslator
 #     # need to change line 68 in GoogleTranslator (google.py): add param verify=False in requests.get
 
 # translator = GoogleTranslator(source='auto', target='en')
-#################################################################
+
 
 base_path = os.path.join(os.getcwd(), r'EY\DATS Germany - TS-SA - TS-SA\03. Data')
     # keep the path of spyder at user level. run the script by selecting all and f9, otherwise the path will change
@@ -46,7 +45,6 @@ base_path = os.path.join(os.getcwd(), r'EY\DATS Germany - TS-SA - TS-SA\03. Data
 
 lemmatizer = WordNetLemmatizer()
 
-# define contents that should be removed
 def generate_stop():
     words_needed = ['no', 'nor', 'not','only','too', 'very', "don't", "should've", 
                     "aren't", "couldn't", "didn't", "doesn't", "hadn't",
@@ -62,7 +60,7 @@ def generate_stop():
 
 stop_words = generate_stop()
 
-# translate a comment
+
 def translate(comment):
     comment_en = None
     while type(comment_en) is not str:
@@ -76,14 +74,14 @@ def translate(comment):
     print('-')
     return comment_en
 
-# compile preprocess steps into a func, digits are removed as well
+
 def clean(comment_en):
     comment_en = re.sub(r'\d+', '', comment_en)
     tokens = [lemmatizer.lemmatize(t) for t in comment_en.lower().split() if t not in stop_words]
     print('-')
     return ' '.join(tokens)
 
-# clean the dataset
+
 df = pd.read_excel(os.path.join(base_path, 'reviews.xlsx'))
 df['Text_en'] = df['Text'].map(translate)
 df['Text_clean'] = df['Text_en'].map(clean)

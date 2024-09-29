@@ -18,19 +18,11 @@ import keyboard
 df = pd.read_excel('branch_locations_links_v2.xlsx')
  
 
-# user = 'xiao'
-# urls = df['url'][115:191]
-
-# user = 'winnetou'
-# urls = df['url'][190:382]
-
-# user = 'ivan'
-# urls = df['url'][381:573]
-x=20
-y=0
-user = 'vindhya'
-start=572+y
-end=572+x+y
+x=0
+y=766
+user = ''
+start=x
+end=y
 start_str = str(start)
 end_str = str(end)
 urls = df['url'][start:end]
