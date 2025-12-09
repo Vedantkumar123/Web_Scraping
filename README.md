@@ -85,25 +85,6 @@ I built this project to showcase how **AI and automation** can help businesses m
 
 ---
 
-## Folder Structure
-
-```
-Web_Scraping/
-│
-├─ Output_Files/                # Scraped and processed Excel files
-├─ Processed_Files/             # Merged and cleaned datasets
-├─ scripts/                     # Python scripts for each stage
-│   ├─ scrape_reviews.py        # Scraping Google Maps reviews
-│   ├─ combine_excels.py        # Combine multiple Excel outputs
-│   ├─ translate_clean.py       # Translate and clean reviews
-│   ├─ sentiment_analysis.py    # RoBERTa-based sentiment scoring
-│   ├─ gpt_topic_extraction.py  # GPT-based topic extraction
-│   └─ utils.py                 # Helper functions like sentiment_score
-└─ README.md
-```
-
----
-
 ## Advantages of My Approach
 
 * **Fully Automated:** Once set up, it scrapes and analyzes reviews without manual intervention.
@@ -115,4 +96,5 @@ Web_Scraping/
 ---
 
 This project was a fun and challenging way for me to combine **web scraping, NLP, sentiment analysis, and AI-based topic extraction** into a single workflow. I’m proud of how it can take messy, multilingual reviews and turn them into **actionable insights**.
+
 
